@@ -4,17 +4,35 @@ import AppContext from './AppContext';
 
 const Provider = ({ children }) => {
   const [planets, setPlanets] = useState([]);
+  const [data, setData] = useState([]);
+  const [name, setName] = useState('');
   useEffect(() => {
     const fetchPlanets = () => {
       fetch('https://swapi-trybe.herokuapp.com/api/planets/')
         .then((results) => results.json())
-        .then((results) => setPlanets(results.results));
+        .then((results) => {
+          setPlanets(results.results);
+          setData(results.results);
+        });
     };
     fetchPlanets();
   }, []);
 
+  useEffect(() => {
+    const newData = planets
+      .filter((planet) => planet.name.toLowerCase().includes(name.toLowerCase()));
+    setData(newData);
+  }, [planets, name]);
+
   const contextValue = {
-    data: planets,
+    planets,
+    data,
+    filters: {
+      filterByName: {
+        name,
+      },
+    },
+    setName,
   };
 
   return (

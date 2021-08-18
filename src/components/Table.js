@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
 
 const Table = () => {
-  const { data: planets } = useContext(AppContext);
+  const { planets, data } = useContext(AppContext);
   if (planets.length === 0) return <p>Loading...</p>;
 
   const keys = Object.keys(planets[0]).filter((key) => key !== 'residents');
@@ -15,7 +15,7 @@ const Table = () => {
         </tr>
       </thead>
       <tbody>
-        { planets.map((planet) => (
+        { data.map((planet) => (
           <tr key={ planet.name }>
             { keys.map((key) => <td key={ key }>{ planet[key] }</td>) }
           </tr>)) }
