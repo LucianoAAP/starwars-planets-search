@@ -1,7 +1,8 @@
-import React from 'react';
-import Proptypes from 'prop-types';
+import React, { useContext } from 'react';
+import AppContext from '../context/AppContext';
 
-const Table = ({ planets }) => {
+const Table = () => {
+  const { data: planets } = useContext(AppContext);
   if (planets.length === 0) return <p>Loading...</p>;
 
   const keys = Object.keys(planets[0]).filter((key) => key !== 'residents');
@@ -21,10 +22,6 @@ const Table = ({ planets }) => {
       </tbody>
     </table>
   );
-};
-
-Table.propTypes = {
-  planets: Proptypes.arrayOf(Proptypes.object).isRequired,
 };
 
 export default Table;
