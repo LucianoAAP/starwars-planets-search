@@ -6,6 +6,11 @@ const Provider = ({ children }) => {
   const [planets, setPlanets] = useState([]);
   const [data, setData] = useState([]);
   const [name, setName] = useState('');
+  const [numericValues, setNumericValues] = useState({
+    column: '',
+    comparison: '',
+    value: 0,
+  });
   useEffect(() => {
     const fetchPlanets = () => {
       fetch('https://swapi-trybe.herokuapp.com/api/planets/')
@@ -24,6 +29,24 @@ const Provider = ({ children }) => {
     setData(newData);
   }, [planets, name]);
 
+  const launchNumericFilters = () => {
+    const { column, comparison, value } = numericValues;
+    if (column.length !== 0 && comparison.length !== 0) {
+      if (comparison === 'maior que') {
+        const filteredData = planets.filter((planet) => Number(planet[column]) > value);
+        setData(filteredData);
+      } else if (comparison === 'igual a') {
+        const filteredData = planets.filter((planet) => Number(planet[column]) === value);
+        setData(filteredData);
+      } else {
+        const filteredData = planets.filter((planet) => Number(planet[column]) < value);
+        setData(filteredData);
+      }
+    } else {
+      setData(planets);
+    }
+  };
+
   const contextValue = {
     planets,
     data,
@@ -31,8 +54,11 @@ const Provider = ({ children }) => {
       filterByName: {
         name,
       },
+      filterByNumericValues: [numericValues],
     },
     setName,
+    setNumericValues,
+    launchNumericFilters,
   };
 
   return (
