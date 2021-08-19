@@ -18,7 +18,12 @@ const Table = () => {
       <tbody>
         { data.map((planet) => (
           <tr key={ planet.name }>
-            { keys.map((key) => <td key={ key }>{ planet[key] }</td>) }
+            { keys.map((key) => {
+              if (key === 'name') {
+                return <td key={ key } data-testid="planet-name">{ planet[key] }</td>;
+              }
+              return <td key={ key }>{ planet[key] }</td>;
+            }) }
           </tr>)) }
       </tbody>
     </table>
