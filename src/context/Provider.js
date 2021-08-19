@@ -15,7 +15,7 @@ const Provider = ({ children }) => {
   const [data, setData] = useState([]);
   const [name, setName] = useState('');
   const [numericValues, setNumericValues] = useState(INITIAL_NUMERIC_VALUES);
-  const [filterByNumericValues, setFilters] = useState([INITIAL_NUMERIC_VALUES]);
+  const [filterByNumericValues, setFilters] = useState([]);
   const [columns, setTotalColumns] = useState(INITIAL_COLUMNS);
   useEffect(() => {
     const fetchPlanets = () => {
@@ -50,11 +50,8 @@ const Provider = ({ children }) => {
     }, newData);
     setData(filteredData);
     const getNewColumns = async () => {
-      const index = filterByNumericValues.length - 1;
-      const columnFilter = filterByNumericValues
-        .filter((filter) => filter !== filterByNumericValues[index]);
-      if (columnFilter.length > 0) {
-        const setColumns = columnFilter.reduce((acc, curr) => {
+      if (filterByNumericValues.length > 0) {
+        const setColumns = filterByNumericValues.reduce((acc, curr) => {
           const { column: currColumn } = curr;
           const filteredColumns = acc.filter((getColumn) => getColumn !== currColumn);
           return filteredColumns;
@@ -69,9 +66,7 @@ const Provider = ({ children }) => {
   const launchNumericFilters = () => {
     const { column, comparison } = numericValues;
     if (column.length !== 0 && comparison.length !== 0) {
-      const setFilter = filterByNumericValues;
-      setFilter[setFilter.length - 1] = numericValues;
-      setFilters([...setFilter, INITIAL_NUMERIC_VALUES]);
+      setFilters([...filterByNumericValues, numericValues]);
     }
   };
 

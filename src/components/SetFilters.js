@@ -4,19 +4,16 @@ import AppContext from '../context/AppContext';
 const SetFilters = () => {
   const { filters, removeFilter } = useContext(AppContext);
   const { filterByNumericValues } = filters;
-  const index = filterByNumericValues.length - 1;
-  const setFilters = filterByNumericValues
-    .filter((filter) => filter !== filterByNumericValues[index]);
-  if (setFilters.length > 0) {
+  if (filterByNumericValues.length > 0) {
     return (
       <div>
         {
-          setFilters.map((filter, key) => {
+          filterByNumericValues.map((filter, index) => {
             const { column, comparison, value } = filter;
             return (
-              <div key={ key } data-testid="filter">
+              <div key={ index } data-testid="filter">
                 <p>{ `${column} ${comparison} ${value}` }</p>
-                <button type="button" onClick={ () => removeFilter(key) }>X</button>
+                <button type="button" onClick={ () => removeFilter(index) }>X</button>
               </div>
             );
           })
