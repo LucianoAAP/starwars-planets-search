@@ -56,8 +56,8 @@ const Provider = ({ children }) => {
       });
     }
     return dataToSort.sort((a, b) => {
-      const x = Number.isNaN(Number(a[key])) ? a[key] : Number(a[key]);
-      const y = Number.isNaN(Number(b[key])) ? b[key] : Number(b[key]);
+      const x = set(a, key);
+      const y = set(b, key);
       if (x > y) return MINUS_ONE;
       if (x < y) return 1;
       return 0;
