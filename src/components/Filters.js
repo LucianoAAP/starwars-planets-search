@@ -1,18 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import AppContext from '../context/AppContext';
 import NumericFilter from './NumericFilter';
 import SetFilters from './SetFilters';
 
 const Filters = () => {
-  const { setName, initialColumns, setOrder, filters } = useContext(AppContext);
+  const { setName, initialColumns, setOrder, initialOrder } = useContext(AppContext);
+
+  const [newOrder, setNewOrder] = useState(initialOrder);
 
   const filterByname = ({ target: { value } }) => {
     setName(value);
   };
 
   const handleOrder = ({ target: { name, value } }) => {
-    const { order } = filters;
-    setOrder({ ...order, [name]: value });
+    setNewOrder({ ...newOrder, [name]: value });
+  };
+
+  const handleSort = () => {
+    setOrder(newOrder);
   };
 
   return (
@@ -59,7 +64,13 @@ const Filters = () => {
             onClick={ handleOrder }
           />
         </label>
-        <button type="button" data-testid="column-sort-button">Sort</button>
+        <button
+          type="button"
+          data-testid="column-sort-button"
+          onClick={ handleSort }
+        >
+          Sort
+        </button>
       </div>
       <NumericFilter />
       <SetFilters />
