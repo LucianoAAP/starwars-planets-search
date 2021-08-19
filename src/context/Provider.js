@@ -49,19 +49,36 @@ const Provider = ({ children }) => {
       return handleFilter(acc);
     }, newData);
     setData(filteredData);
+    const getNewColumns = async () => {
+      const index = filterByNumericValues.length - 1;
+      const columnFilter = filterByNumericValues
+        .filter((filter) => filter !== filterByNumericValues[index]);
+      if (columnFilter.length > 0) {
+        const setColumns = columnFilter.reduce((acc, curr) => {
+          const { column: currColumn } = curr;
+          const filteredColumns = acc.filter((getColumn) => getColumn !== currColumn);
+          return filteredColumns;
+        }, INITIAL_COLUMNS);
+        await setTotalColumns(setColumns);
+        await setNumericValues({ ...INITIAL_NUMERIC_VALUES, column: setColumns[0] });
+      }
+    };
+    getNewColumns();
   }, [planets, name, filterByNumericValues]);
 
-  const launchNumericFilters = async () => {
-    const setFilter = filterByNumericValues;
-    setFilter[setFilter.length - 1] = numericValues;
-    await setFilters([...setFilter, INITIAL_NUMERIC_VALUES]);
-    const setColumns = filterByNumericValues.reduce((acc, curr) => {
-      const { column } = curr;
-      const filteredColumns = acc.filter((getColumn) => getColumn !== column);
-      return filteredColumns;
-    }, INITIAL_COLUMNS);
-    await setTotalColumns(setColumns);
-    await setNumericValues({ ...INITIAL_NUMERIC_VALUES, column: setColumns[0] });
+  const launchNumericFilters = () => {
+    const { column, comparison } = numericValues;
+    if (column.length !== 0 && comparison.length !== 0) {
+      const setFilter = filterByNumericValues;
+      setFilter[setFilter.length - 1] = numericValues;
+      setFilters([...setFilter, INITIAL_NUMERIC_VALUES]);
+    }
+  };
+
+  const removeFilter = (index) => {
+    const newFilters = filterByNumericValues
+      .filter((filter) => filter !== filterByNumericValues[index]);
+    setFilters(newFilters);
   };
 
   const contextValue = {
@@ -78,6 +95,7 @@ const Provider = ({ children }) => {
     setName,
     setNumericValues,
     launchNumericFilters,
+    removeFilter,
   };
 
   return (

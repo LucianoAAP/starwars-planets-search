@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
 
-const Filter = () => {
+const NumericFilter = () => {
   const { numericValues, setNumericValues,
     launchNumericFilters, columns } = useContext(AppContext);
   const { column, comparison, value: getvalue } = numericValues;
@@ -47,7 +47,6 @@ const Filter = () => {
           data-testid="value-filter"
           value={ getvalue }
           onChange={ handleChange }
-          defaultValue="0"
         />
       </label>
       <button
@@ -61,4 +60,4 @@ const Filter = () => {
   );
 };
 
-export default Filter;
+export default NumericFilter;

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import AppContext from '../context/AppContext';
-import Filter from './Filter';
+import NumericFilter from './NumericFilter';
+import SetFilters from './SetFilters';
 
 const Filters = () => {
   const { setName } = useContext(AppContext);
@@ -21,7 +22,8 @@ const Filters = () => {
           />
         </label>
       </div>
-      <Filter />
+      <NumericFilter />
+      <SetFilters />
     </div>
   );
 };

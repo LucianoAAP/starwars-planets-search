@@ -4,7 +4,7 @@ import AppContext from '../context/AppContext';
 const Table = () => {
   const { planets, data } = useContext(AppContext);
   if (planets.length === 0) return <p>Loading...</p>;
-  if (data.length === 0) return <p>No planet with those parameters</p>;
+  if (data.length === 0) return <p>No planet with these parameters</p>;
 
   const keys = Object.keys(planets[0]).filter((key) => key !== 'residents');
 
