@@ -65,7 +65,8 @@ const Provider = ({ children }) => {
   }, [order]);
 
   useEffect(() => {
-    const newData = planets
+    const sortedData = sortData(planets);
+    const newData = sortedData
       .filter((planet) => planet.name.toLowerCase().includes(name.toLowerCase()));
     const filteredData = filterByNumericValues.reduce((acc, curr) => {
       const { column, comparison, value } = curr;
@@ -83,8 +84,7 @@ const Provider = ({ children }) => {
       };
       return handleFilter(acc);
     }, newData);
-    const sortedData = sortData(filteredData);
-    setData(sortedData);
+    setData(filteredData);
     const getNewColumns = async () => {
       const setColumns = filterByNumericValues.reduce((acc, curr) => {
         if (Object.keys(curr).length !== 0) {
@@ -126,6 +126,7 @@ const Provider = ({ children }) => {
     },
     columns,
     initialColumns: INITIAL_COLUMNS,
+    initialOrder: INITIAL_ORDER,
     setName,
     setNumericValues,
     launchNumericFilters,
