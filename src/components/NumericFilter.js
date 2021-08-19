@@ -12,9 +12,9 @@ const NumericFilter = () => {
   };
 
   return (
-    <div>
+    <div className="numeric-filter">
       <label htmlFor="column">
-        Column
+        Column:
         <select
           name="column"
           data-testid="column-filter"
@@ -26,7 +26,7 @@ const NumericFilter = () => {
         </select>
       </label>
       <label htmlFor="comparison">
-        Comparison
+        Comparison:
         <select
           name="comparison"
           data-testid="comparison-filter"
@@ -40,7 +40,7 @@ const NumericFilter = () => {
         </select>
       </label>
       <label htmlFor="value">
-        Value
+        Value:
         <input
           name="value"
           type="number"

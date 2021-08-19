@@ -11,9 +11,15 @@ const SetFilters = () => {
           filterByNumericValues.map((filter, index) => {
             const { column, comparison, value } = filter;
             return (
-              <div key={ index } data-testid="filter">
+              <div key={ index } data-testid="filter" className="set-filter">
                 <p>{ `${column} ${comparison} ${value}` }</p>
-                <button type="button" onClick={ () => removeFilter(index) }>X</button>
+                <button
+                  type="button"
+                  className="remove-button"
+                  onClick={ () => removeFilter(index) }
+                >
+                  X
+                </button>
               </div>
             );
           })
@@ -21,7 +27,7 @@ const SetFilters = () => {
       </div>
     );
   }
-  return <div>No filter set</div>;
+  return <div className="no-filter">No filter set</div>;
 };
 
 export default SetFilters;

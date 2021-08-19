@@ -21,27 +21,16 @@ const Filters = () => {
   };
 
   return (
-    <div>
-      <div>
-        <label htmlFor="name">
-          Filter by name
-          <input
-            name="name"
-            type="text"
-            data-testid="name-filter"
-            onChange={ filterByname }
-          />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="column-sort">
-          Sort by
+    <div className="filters">
+      <div className="sort-filter">
+        <label htmlFor="column-sort" className="sort-label">
+          Sort by:
           <select name="column" data-testid="column-sort" onChange={ handleOrder }>
             <option>Name</option>
             { initialColumns.map((column) => <option key={ column }>{ column }</option>) }
           </select>
         </label>
-        <label htmlFor="asc">
+        <label htmlFor="asc" className="sort-label">
           ASC
           <input
             name="sort"
@@ -53,7 +42,7 @@ const Filters = () => {
             onClick={ handleOrder }
           />
         </label>
-        <label htmlFor="des">
+        <label htmlFor="des" className="sort-label">
           DES
           <input
             name="sort"
@@ -71,6 +60,19 @@ const Filters = () => {
         >
           Sort
         </button>
+      </div>
+      <div className="name-filter">
+        <label htmlFor="name">
+          Filter by name:
+          <input
+            name="name"
+            className="planet-input"
+            type="text"
+            data-testid="name-filter"
+            onChange={ filterByname }
+            placeholder="Name of the planet"
+          />
+        </label>
       </div>
       <NumericFilter />
       <SetFilters />

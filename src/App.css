@@ -1,41 +1,110 @@
-.App {
+body {
+  background-color: rgb(34, 30, 30);
+  color: white;
+}
+
+td {
+  border: 1px solid white;
+  padding: 5px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+th {
+  border: 1px solid white;
+  padding: 5px;
 }
 
-@media ( prefers-reduced-motion : no-preference ) {
-
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+table {
+  border-collapse: collapse;
+  margin-top: 30px;
 }
 
-.App-header {
+.filters {
   align-items: center;
-  background-color: #282c34;
-  color: white;
   display: flex;
   flex-direction: column;
-  font-size: calc(10px + 2vmin);
+}
+
+.sort-filter {
+  align-items: flex-end;
+  background-color: rgb(6, 6, 58);
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-top: 2px solid black;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+  padding: 10px;
+  width: 600px;
+}
+
+.name-filter {
+  align-items: flex-end;
+  background-color: rgb(6, 6, 58);
+  border: 2px solid black;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  width: 600px;
+}
+
+.numeric-filter {
+  align-items: flex-end;
+  background-color: rgb(6, 6, 58);
+  border-bottom: 2px solid black;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 600px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+
+.sort-label {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+input {
+  border-radius: 5px;
+}
+
+.planet-input {
+  width: 570px;
+}
+
+button {
+  background-color: yellow;
+  border-radius: 5px;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.no-filter {
+  margin: 20px;
+}
+
+.set-filter {
+  align-items: center;
+  background-color: rgb(23, 122, 89);
+  border-radius: 5px;
+  display: flex;
   justify-content: center;
-  min-height: 100vh;
+  margin: 10px;
+  position: relative;
+  width: 400px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+.remove-button {
+  background-color: red;
+  height: 25px;
+  position: absolute;
+  right: 5px;
 }
