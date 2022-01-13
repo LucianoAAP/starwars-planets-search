@@ -34,9 +34,9 @@ const NumericFilter = () => {
           onChange={ handleChange }
         >
           <option value="">Choose comparison</option>
-          <option>maior que</option>
-          <option>igual a</option>
-          <option>menor que</option>
+          <option>higher than</option>
+          <option>equal to</option>
+          <option>lower than</option>
         </select>
       </label>
       <label htmlFor="value">
