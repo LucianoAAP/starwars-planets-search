@@ -3,6 +3,10 @@ body {
   color: white;
 }
 
+h1 {
+  text-align: center;
+}
+
 td {
   border: 1px solid white;
   padding: 5px;

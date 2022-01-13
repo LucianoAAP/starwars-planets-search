@@ -72,10 +72,10 @@ const Provider = ({ children }) => {
       const { column, comparison, value } = curr;
       const handleFilter = (arr) => {
         if (column.length !== 0 && comparison.length !== 0) {
-          if (comparison === 'maior que') {
+          if (comparison === 'higher than') {
             return arr.filter((planet) => Number(planet[column]) > value);
           }
-          if (comparison === 'igual a') {
+          if (comparison === 'equal to') {
             return arr.filter((planet) => Number(planet[column]) === value);
           }
           return arr.filter((planet) => Number(planet[column]) < value);
