@@ -16,7 +16,7 @@ This is a slightly modified version of a front-end project I had to develop duri
 
 ## Prerequisites
 
-This project requires the "NPM" package
+This application requires the "NPM" package
 
 ## Installation
 
